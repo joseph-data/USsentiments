@@ -1,12 +1,16 @@
+[![R](https://img.shields.io/badge/R-%23276DC3?logo=r&logoColor=white)](https://www.r-project.org/) [![TidyTuesday](https://img.shields.io/badge/TidyTuesday-Project-brightgreen)](https://github.com/rfordatascience/tidytuesday) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+[![tidyverse](https://cran.r-project.org/web/badges/version/tidyverse.svg)](https://cran.r-project.org/package=tidyverse) [![showtext](https://cran.r-project.org/web/badges/version/showtext.svg)](https://cran.r-project.org/package=showtext) [![ggtext](https://cran.r-project.org/web/badges/version/ggtext.svg)](https://cran.r-project.org/package=ggtext)
+
 # US Sympathies Over Time
 
-A replication of Gallup’s analysis of American sympathy toward Israelis vs. Palestinians, from 2000 through 2025. This project reads the original Gallup CSV data, computes the “sympathy difference” (Israelis − Palestinians), and produces a line‐chart styled after Gallup’s own visualization.
+A replication of Gallup’s analysis of American sympathy toward Israelis vs. Palestinians, from 2000 through 2025. This project reads the original Gallup CSV data, computes the **sympathy difference** (Israelis − Palestinians), and produces a line‐chart styled after Gallup’s own visualization.
 
----
+------------------------------------------------------------------------
 
 ## 🗂 Project Structure
 
-```
+```         
 USsentiments/
 ├── data/
 │   ├── Americans Sympathies.csv
@@ -18,28 +22,25 @@ USsentiments/
 └── README.md
 ```
 
-* **data/**
-  Raw CSV exports from Gallup for each group (All Americans, Democrats, Republicans).
+-   **data/** Raw CSV exports from Gallup for each group (All Americans, Democrats, Republicans).
 
-* **images/**
-  Output folder containing the final plot image.
+-   **images/** Output folder containing the final plot image.
 
-* **plot\_sympathies.R**
-  R script that reads, cleans, and plots the Gallup data using **tidyverse**, **showtext**, and **ggtext**.
+-   **plot_sympathies.R** R script that reads, cleans, and plots the Gallup data using **tidyverse**, **showtext**, and **ggtext**.
 
----
+------------------------------------------------------------------------
 
 ## 📷 Preview
 
 ![Sympathy Plot](images/israelis-palestinians.png)
 
----
+------------------------------------------------------------------------
 
 ## 🚀 Getting Started
 
 ### 1. Clone the Repo
 
-```bash
+``` bash
 git clone https://github.com/joseph-data/USsentiments.git
 cd USsentiments
 ```
@@ -48,29 +49,29 @@ cd USsentiments
 
 Run in R or RStudio:
 
-```r
+``` r
 install.packages(c("tidyverse", "showtext", "ggtext"))
 ```
 
 ### 3. Execute the Script
 
-```bash
+``` bash
 Rscript plot_sympathies.R
 ```
 
 This will:
 
-1. Read all `*Sympathies.csv` files in `data/`.
-2. Compute the yearly sympathy difference (`Israelis − Palestinians`).
-3. Generate and save the plot to `images/israelis-palestinians.png` (6×6.97″ at 300 dpi).
+1.  Read all `*Sympathies.csv` files in `data/`.
+2.  Compute the yearly sympathy difference (`Israelis − Palestinians`).
+3.  Generate and save the plot to `images/israelis-palestinians.png` (6×6.97″ at 300 dpi).
 
----
+------------------------------------------------------------------------
 
 ## 📝 Walkthrough of `plot_sympathies.R`
 
 Below is a high-level rundown of the main sections in the script.
 
-```r
+``` r
 # 1. Setup -------------------------------------------------------------------
 library(tidyverse)    # data wrangling & ggplot2
 library(showtext)     # custom Google fonts
@@ -82,9 +83,9 @@ showtext_opts(dpi = 300)
 showtext_auto()
 ```
 
-* **Purpose**: Load required packages and register the *Libre Franklin* font for high‑res output.
+-   **Purpose**: Load required packages and register the *Libre Franklin* font for high‑res output.
 
-```r
+``` r
 # 3. Data Ingestion & Cleaning ----------------------------------------------
 csv_files <- list.files("data", pattern = "Sympathies.*\\.csv$", full.names = TRUE)
 gallup_data <- read_csv(csv_files, id = "party", skip = 1,
@@ -100,9 +101,9 @@ gallup_data <- read_csv(csv_files, id = "party", skip = 1,
   select(party, date, difference)
 ```
 
-* **Purpose**: Read all three CSVs, clean labels, parse percentages, compute the difference, and prepare a date column for plotting.
+-   **Purpose**: Read all three CSVs, clean labels, parse percentages, compute the difference, and prepare a date column for plotting.
 
-```r
+``` r
 # 4. Plot Construction ------------------------------------------------------
 gallup_plot <- gallup_data %>%
   ggplot(aes(x = date, y = difference, color = party)) +
@@ -116,9 +117,9 @@ gallup_plot <- gallup_data %>%
   theme_minimal(base_family = "franklin")
 ```
 
-* **Purpose**: Build the time‑series line chart with custom annotations, quadrant labels, and Gallup‑style theming.
+-   **Purpose**: Build the time‑series line chart with custom annotations, quadrant labels, and Gallup‑style theming.
 
-```r
+``` r
 # 5. Save Output ------------------------------------------------------------
 ggsave(
   filename = "images/israelis-palestinians.png",
@@ -129,19 +130,19 @@ ggsave(
 )
 ```
 
-* **Purpose**: Export the final visualization as a high‑resolution PNG ready for publication or embedding.
+-   **Purpose**: Export the final visualization as a high‑resolution PNG ready for publication or embedding.
 
----
+------------------------------------------------------------------------
 
 ## 🔄 Next Steps
 
-* **Update data**: Drop in new Gallup CSVs into `data/` as they’re released.
-* **Customize**: Tweak colors, fonts, or annotations in the R script for alternate styles.
-* **Report**: Embed the plot in an RMarkdown report or dashboard.
+-   **Update data**: Drop in new Gallup CSVs into `data/` as they’re released.
+-   **Customize**: Tweak colors, fonts, or annotations in the R script for alternate styles.
+-   **Report**: Embed the plot in an RMarkdown report or dashboard.
 
----
+------------------------------------------------------------------------
 
 ## ℹ️ Credits
 
-* **Source data**: Gallup poll, March 2025
-* **Original article**: [Less than half sympathetic toward Israelis](https://news.gallup.com/poll/657404/less-half-sympathetic-toward-israelis.aspx)
+-   **Source data**: Gallup poll, March 2025
+-   **Original article**: [Less than half sympathetic toward Israelis](https://news.gallup.com/poll/657404/less-half-sympathetic-toward-israelis.aspx)
