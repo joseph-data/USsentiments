@@ -1,7 +1,3 @@
-[![R](https://img.shields.io/badge/R-%23276DC3?logo=r&logoColor=white)](https://www.r-project.org/) [![TidyTuesday](https://img.shields.io/badge/TidyTuesday-Project-brightgreen)](https://github.com/rfordatascience/tidytuesday) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-
-[![tidyverse](https://cran.r-project.org/web/badges/version/tidyverse.svg)](https://cran.r-project.org/package=tidyverse) [![showtext](https://cran.r-project.org/web/badges/version/showtext.svg)](https://cran.r-project.org/package=showtext) [![ggtext](https://cran.r-project.org/web/badges/version/ggtext.svg)](https://cran.r-project.org/package=ggtext)
-
 # US Sympathies Over Time
 
 A replication of Gallup’s analysis of American sympathy toward Israelis vs. Palestinians, from 2000 through 2025. This project reads the original Gallup CSV data, computes the **sympathy difference** (Israelis − Palestinians), and produces a line‐chart styled after Gallup’s own visualization.
