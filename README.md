@@ -129,13 +129,6 @@ ggsave(
 -   **Purpose**: Export the final visualization as a high‑resolution PNG ready for publication or embedding.
 
 ------------------------------------------------------------------------
-
-## 🔄 Next Steps
-
--   **Update data**: Drop in new Gallup CSVs into `data/` as they’re released.
--   **Customize**: Tweak colors, fonts, or annotations in the R script for alternate styles.
--   **Report**: Embed the plot in an RMarkdown report or dashboard.
-
 ------------------------------------------------------------------------
 
 ## ℹ️ Credits
